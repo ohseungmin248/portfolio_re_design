@@ -1,1 +1,96 @@
-html이 재생되고 있어요
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASICS Korea - Digital Experience</title>
+    <style>
+        /* Reset & Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #FAFAFA; color: #333; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navigation */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; background: #fff; }
+        .logo { font-weight: bold; font-size: 1.8rem; font-style: italic; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 40px; font-weight: 500; font-size: 0.95rem; }
+
+        /* Hero Section */
+        .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 70vh; background-color: #0F7A4E; color: white; text-align: center; }
+        .hero h1 { font-size: 3.5rem; font-weight: 300; letter-spacing: 4px; margin-bottom: 30px; }
+        .cta-button { padding: 16px 48px; background-color: #FF9122; color: #fff; border: none; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s ease, opacity 0.3s ease; }
+        .cta-button:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* Filter & Utility */
+        .toolbar { display: flex; justify-content: flex-end; padding: 30px 50px; background: #fff; }
+        .stock-toggle { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; cursor: pointer; color: #555; }
+        .toggle-switch { width: 44px; height: 24px; background-color: #ddd; border-radius: 12px; position: relative; transition: background-color 0.3s ease; }
+        .toggle-switch::before { content: ''; position: absolute; width: 18px; height: 18px; background: white; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.3s ease; }
+        .stock-toggle.active .toggle-switch { background-color: #0F7A4E; }
+        .stock-toggle.active .toggle-switch::before { transform: translateX(20px); }
+
+        /* Interactive Tech Stack Placeholder */
+        .tech-stack-section { height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #fff; }
+        .tech-content { text-align: center; max-width: 600px; }
+        .tech-content h2 { font-size: 2.2rem; margin-bottom: 20px; color: #0F7A4E; font-weight: 400; }
+        .tech-content p { color: #888; line-height: 1.8; font-size: 1.05rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ASICS</div>
+        <div class="nav-links">
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Community</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>GEL-KAYANO 31</h1>
+        <button class="cta-button">바로 구매하기</button>
+    </section>
+
+    <div class="toolbar">
+        <div class="stock-toggle" id="stockToggle" onclick="toggleStock()">
+            <span>구매 가능 상품만 보기</span>
+            <div class="toggle-switch"></div>
+        </div>
+    </div>
+
+    <section class="tech-stack-section" id="interactiveTech">
+        <div class="tech-content">
+            <h2>Interactive Tech Stack</h2>
+            <p>스크롤 시 제품이 해체되며 내부 젤(GEL) 구조와 미드솔의 압력 분산 시뮬레이션이 시각적으로 전개되는 영역입니다.</p>
+        </div>
+    </section>
+
+    <script>
+        // 실시간 재고 기반 토글 기능 구현
+        function toggleStock() {
+            const toggle = document.getElementById('stockToggle');
+            toggle.classList.toggle('active');
+            
+            if (toggle.classList.contains('active')) {
+                console.log("품절 상품 숨기기 필터 활성화: API 데이터 연동 필요");
+                // Fetch API를 통한 재고 필터링 로직 추가
+            } else {
+                console.log("전체 상품 보기 활성화");
+            }
+        }
+
+        // 스크롤 애니메이션 옵저버 (GSAP 연동을 위한 트리거 포인트)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log("테크 스택 애니메이션 실행 영역 진입");
+                    // 3D 렌더링 또는 GSAP ScrollTrigger 로직 추가
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.getElementById('interactiveTech'));
+    </script>
+</body>
+</html>
